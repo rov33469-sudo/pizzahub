@@ -11,14 +11,10 @@
 }
 
 /* Map CSS variables for Tailwind usage via utility classes */
-:root {
-  --cream-rgb: 247,242,233;
-}
+:root { --cream-rgb: 247,242,233; }
 
 /***** Typography *****/
-body {
-  color: var(--text);
-}
+body { color: var(--text); }
 
 .text-muted { color: var(--muted); }
 .text-deepred { color: var(--deepred); }
@@ -30,9 +26,7 @@ body {
 .border-deepred { border-color: var(--deepred); }
 
 /* Pizza cursor (simple SVG) */
-body.pizza-cursor {
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'><polygon points='2,2 22,8 2,14' fill='%23f3c969' stroke='%23c13327' stroke-width='2'/><circle cx='10' cy='7' r='2' fill='%23c13327'/><circle cx='14' cy='8.5' r='2' fill='%23c13327'/></svg>") 4 4, auto;
-}
+body.pizza-cursor { cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'><polygon points='2,2 22,8 2,14' fill='%23f3c969' stroke='%23c13327' stroke-width='2'/><circle cx='10' cy='7' r='2' fill='%23c13327'/><circle cx='14' cy='8.5' r='2' fill='%23c13327'/></svg>") 4 4, auto; }
 
 /* Subtle section entrances */
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
@@ -46,3 +40,11 @@ button { transition: background-color .2s ease, color .2s ease, border-color .2s
 
 /* Carousel controls visibility */
 [data-radix-carousel] button { backdrop-filter: blur(8px); }
+
+/* Scroll indicator */
+.hero-scroll-indicator {
+  position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%);
+  font-size: 24px; text-decoration: none; filter: drop-shadow(0 2px 4px rgba(0,0,0,.2));
+  animation: bob 1.2s ease-in-out infinite;
+}
+@keyframes bob { 0%,100%{ transform: translate(-50%, 0); } 50%{ transform: translate(-50%, -8px); } }

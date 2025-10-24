@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { BRAND, IMAGES, CATEGORIES, MENU, GROWTH, REVIEWS, TODAY_SPECIAL, MUSIC, ASSETS } from "../mock/mock";
+import { BRAND, IMAGES, CATEGORIES, MENU, GROWTH, REVIEWS, BLOGGER_REVIEWS, TODAY_SPECIAL, MUSIC, ASSETS, TIMELINE, VIDEO, CHEFS_CHOICE } from "../mock/mock";
 import { Button } from "../components/ui/button";
 import { Card, CardHeader, CardContent, CardTitle } from "../components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
@@ -11,6 +11,9 @@ import { Switch } from "../components/ui/switch";
 import { Badge } from "../components/ui/badge";
 import { toast, Toaster } from "sonner";
 import { Instagram, Phone, MapPin, Star, Download, Music, X } from "lucide-react";
+import { Timeline } from "../components/sections/Timeline";
+import { ChefsChoice } from "../components/sections/ChefsChoice";
+import { VideoSection } from "../components/sections/VideoSection";
 
 // Utility: simple count-up animation
 const useCountUp = (target, duration = 1000) => {
@@ -47,6 +50,8 @@ const Header = ({ onOrderClick }) => {
         <nav className="hidden md:flex items-center gap-6 text-sm">
           <a href="#home" className="hover:text-olive transition-colors">Home</a>
           <a href="#about" className="hover:text-olive transition-colors">About</a>
+          <a href="#timeline" className="hover:text-olive transition-colors">Journey</a>
+          <a href="#chefs-choice" className="hover:text-olive transition-colors">Chef’s Choice</a>
           <a href="#menu" className="hover:text-olive transition-colors">Menu</a>
           <a href="#growth" className="hover:text-olive transition-colors">Growth</a>
           <a href="#reviews" className="hover:text-olive transition-colors">Reviews</a>
@@ -89,6 +94,7 @@ const Hero = ({ parallaxY }) => {
           <div className="absolute -top-6 -right-6 w-32 h-32 bg-olive/30 rounded-xl blur-2xl -z-10" />
         </div>
       </div>
+      <a href="#timeline" className="hero-scroll-indicator" aria-label="Scroll to journey">🍕</a>
     </section>
   );
 };
@@ -225,15 +231,16 @@ const Growth = () => {
 };
 
 const Reviews = () => {
+  const items = [...REVIEWS, ...BLOGGER_REVIEWS];
   return (
     <section id="reviews" className="py-20 reveal">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-3xl font-bold" style={{fontFamily:"Poppins, sans-serif"}}>What Customers Say</h2>
+          <h2 className="text-3xl font-bold" style={{fontFamily:"Poppins, sans-serif"}}>What Customers & Bloggers Say</h2>
         </div>
         <Carousel className="mt-8">
           <CarouselContent>
-            {REVIEWS.map((r)=> (
+            {items.map((r)=> (
               <CarouselItem key={r.id} className="md:basis-1/2 lg:basis-1/3">
                 <Card className="h-full">
                   <CardContent className="pt-6">
@@ -404,6 +411,9 @@ export default function HomePage() {
         </div>
       </section>
       <About />
+      <Timeline items={TIMELINE} />
+      <VideoSection title="Behind the Oven" videoUrl={VIDEO.url} caption={VIDEO.caption} />
+      <ChefsChoice items={CHEFS_CHOICE} />
       <MenuGrid />
       <Growth />
       <Reviews />
@@ -439,8 +449,7 @@ export default function HomePage() {
             <Button onClick={()=>{ toast.success("Added to order (mock)"); setOpenSpecial(false); }} className="bg-olive hover:bg-olive/90 text-white">Add</Button>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={()=> setOpenSpecial(false)}><X className="w-4 h-4 mr-2"/>Close</Button>
-          </DialogFooter>
+            <Button variant="outline" onClick={()=> setOpenSpecial(false)}><X className="w-4 h-4 mr-2"/>Close</Button></nDialogFooter>
         </DialogContent>
       </Dialog>
     </div>

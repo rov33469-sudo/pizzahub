@@ -70,34 +70,15 @@ export const GROWTH = {
 };
 
 export const REVIEWS = [
-  {
-    id: "r1",
-    name: "Ananya M.",
-    rating: 5,
-    text: "Best wood-fired crust in Mumbai. The truffle funghi blew my mind!",
-    avatar: "https://i.pravatar.cc/100?img=12",
-  },
-  {
-    id: "r2",
-    name: "Rahul S.",
-    rating: 5,
-    text: "Super fresh ingredients and warm service. Totally recommend!",
-    avatar: "https://i.pravatar.cc/100?img=5",
-  },
-  {
-    id: "r3",
-    name: "Sana K.",
-    rating: 4,
-    text: "Margherita is perfection. Simple and so flavorful.",
-    avatar: "https://i.pravatar.cc/100?img=8",
-  },
-  {
-    id: "r4",
-    name: "Karan P.",
-    rating: 5,
-    text: "Ordered for a party, everyone loved the Bombay Heat!",
-    avatar: "https://i.pravatar.cc/100?img=18",
-  },
+  { id: "r1", name: "Ananya M.", rating: 5, text: "Best wood-fired crust in Mumbai. The truffle funghi blew my mind!", avatar: "https://i.pravatar.cc/100?img=12" },
+  { id: "r2", name: "Rahul S.", rating: 5, text: "Super fresh ingredients and warm service. Totally recommend!", avatar: "https://i.pravatar.cc/100?img=5" },
+  { id: "r3", name: "Sana K.", rating: 4, text: "Margherita is perfection. Simple and so flavorful.", avatar: "https://i.pravatar.cc/100?img=8" },
+  { id: "r4", name: "Karan P.", rating: 5, text: "Ordered for a party, everyone loved the Bombay Heat!", avatar: "https://i.pravatar.cc/100?img=18" },
+];
+
+export const BLOGGER_REVIEWS = [
+  { id: "b1", name: "FoodieMumbai", rating: 5, text: "Rony’s wood-fired pies are the city’s hidden gem—charred just right, toppings that sing.", avatar: "https://i.pravatar.cc/100?img=30" },
+  { id: "b2", name: "SliceOfLife Blog", rating: 5, text: "Truffle Funghi is a masterpiece. Balanced, aromatic, unforgettable.", avatar: "https://i.pravatar.cc/100?img=16" },
 ];
 
 export const TODAY_SPECIAL = {
@@ -109,10 +90,28 @@ export const TODAY_SPECIAL = {
 
 export const MUSIC = {
   enable: true,
-  // Royalty-free soft Italian instrumental sample (public demo link). Can be replaced later.
   url: "https://cdn.pixabay.com/download/audio/2021/08/08/audio_6c8435c3a7.mp3?filename=memories-113172.mp3",
 };
 
 export const ASSETS = {
   MENU_PDF_URL: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
 };
+
+export const TIMELINE = [
+  { year: 2015, title: "First Oven", text: "Started with a tiny backyard oven and neighborhood tastings.", img: IMAGES.heroChef },
+  { year: 2018, title: "Pop-up Nights", text: "Weekend pop-ups grew a loyal base; perfected slow-fermented dough.", img: IMAGES.pizzaClose2 },
+  { year: 2021, title: "Rony’s Pizza Hub", text: "Opened our cozy hub in Andheri West with a wood-fired oven.", img: IMAGES.heroFire },
+  { year: 2024, title: "30+ Varieties", text: "Seasonal specials, collabs, and chef’s tasting menus.", img: IMAGES.pizzaClose1 },
+  { year: 2025, title: "Community Favorite", text: "1000+ happy customers and counting.", img: IMAGES.garlicBread },
+];
+
+export const VIDEO = {
+  url: "https://www.youtube.com/embed/3AAdKl1UYZs",
+  caption: "From dough to fire — a peek into our wood-fired ritual.",
+};
+
+export const CHEFS_CHOICE = [
+  { id: "c1", name: "Truffle Funghi", price: 499, img: IMAGES.pizzaClose1, desc: "Wild mushrooms, truffle oil, parmesan." },
+  { id: "c2", name: "Bombay Heat", price: 459, img: IMAGES.pizzaClose2, desc: "Tandoori chicken, jalapeño, chilli oil." },
+  { id: "c3", name: "Burrata Margherita", price: 529, img: IMAGES.pizzaClose1, desc: "Creamy burrata, basil oil, San Marzano base." },
+];
