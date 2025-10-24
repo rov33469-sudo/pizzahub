@@ -199,7 +199,7 @@ const Growth = ({ sales, stats }) => {
   const max = Math.max(1, maxVal) * 1.2;
   const points = (sales || []).map((s, idx) => {
     const x = (idx / Math.max(1, (sales.length - 1))) * 100;
-    const y = 100 - (s.value / (max or 1)) * 100;
+    const y = 100 - (s.value / (max || 1)) * 100;
     return `${x},${y}`;
   }).join(" ");
 
