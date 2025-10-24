@@ -242,7 +242,7 @@ const Reviews = () => {
                       <div>
                         <div className="font-medium">{r.name}</div>
                         <div className="text-xs text-muted flex items-center gap-1">
-                          {Array.from({length: Math.round(r.rating)}).map((_,i)=> <Star key={i} className="w-4 h-4 text-olive fill-olive" />)}
+                          {Array.from({length: Math.round(r.rating)}).map((_,i)=> <Star key={i} className="w-4 h-4 text-olive" fill="currentColor" />)}
                         </div>
                       </div>
                     </div>
