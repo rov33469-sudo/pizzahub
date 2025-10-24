@@ -166,7 +166,6 @@
 
 ## test_plan:
   current_focus:
-    - "Implement backend models and CRUD for contracts"
     - "Replace mocks with live fetches"
   stuck_tasks: []
   test_all: false
