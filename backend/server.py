@@ -10,8 +10,8 @@ from typing import List
 import uuid
 from datetime import datetime
 
-from .seed import seed_if_empty
-from .routes_content import make_router
+from seed import seed_if_empty
+from routes_content import make_router
 
 
 ROOT_DIR = Path(__file__).parent
