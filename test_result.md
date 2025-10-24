@@ -176,3 +176,35 @@
     message: "Contracts ready. Awaiting user confirmation to start backend implementation and then run backend testing agent."
   - agent: "testing"
     message: "Backend testing completed successfully. Fixed import issue in server.py (relative to absolute imports). All 10 FastAPI endpoints are working correctly: Health, Menu (10 items with 5 categories), Chef's Choice (3 items), Special, Reviews (6 items with customer/blogger types), Timeline (5 items in ascending years), Video (YouTube URL), Assets (menu_pdf_url), Contact Messages (POST with id/ts response), and Bookings (POST with status=received). Backend is fully functional and ready for frontend integration."
+
+
+## frontend:
+  - task: "Integrate frontend with live backend endpoints and regress key flows"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/HomePage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Frontend now pulls from live API for menu, chefs-choice, reviews, timeline, video, assets, and posts contact messages. Needs full UI automation test."
+
+## test_plan:
+  current_focus:
+    - "UI regression: hero load, special modal behavior"
+    - "Scroll indicator -> Journey section"
+    - "Video iframe presence (YouTube)"
+    - "Chef’s Choice carousel renders (>=3) and navigates"
+    - "Menu category switching (Specials -> includes Truffle Funghi/Bombay Heat)"
+    - "Reviews include blogger (FoodieMumbai)"
+    - "Contact form posts to backend and shows toast"
+    - "Download Menu link works"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+## agent_communication:
+  - agent: "main"
+    message: "Please run automated UI tests per the plan above. Handle the Today’s Special modal if present (close it), then continue. Verify API-backed content and interactions."
