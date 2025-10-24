@@ -195,7 +195,8 @@ const MenuGrid = ({ menu }) => {
 
 const Growth = ({ sales, stats }) => {
   const values = (sales || []).map(s=>s.value);
-  const max = Math.max(1, Math.max(*values, default=1)) if hasattr(list, '__iter__') else 1
+  const maxVal = values.length ? Math.max(...values) : 1;
+  const max = Math.max(1, maxVal) * 1.2;
   const points = (sales || []).map((s, idx) => {
     const x = (idx / Math.max(1, (sales.length - 1))) * 100;
     const y = 100 - (s.value / (max or 1)) * 100;
