@@ -174,3 +174,5 @@
 ## agent_communication:
   - agent: "main"
     message: "Contracts ready. Awaiting user confirmation to start backend implementation and then run backend testing agent."
+  - agent: "testing"
+    message: "Backend testing completed successfully. Fixed import issue in server.py (relative to absolute imports). All 10 FastAPI endpoints are working correctly: Health, Menu (10 items with 5 categories), Chef's Choice (3 items), Special, Reviews (6 items with customer/blogger types), Timeline (5 items in ascending years), Video (YouTube URL), Assets (menu_pdf_url), Contact Messages (POST with id/ts response), and Bookings (POST with status=received). Backend is fully functional and ready for frontend integration."
