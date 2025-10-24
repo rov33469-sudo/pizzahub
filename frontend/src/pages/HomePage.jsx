@@ -449,7 +449,7 @@ export default function HomePage() {
             <Button onClick={()=>{ toast.success("Added to order (mock)"); setOpenSpecial(false); }} className="bg-olive hover:bg-olive/90 text-white">Add</Button>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={()=> setOpenSpecial(false)}><X className="w-4 h-4 mr-2"/>Close</Button></nDialogFooter>
+            <Button variant="outline" onClick={()=> setOpenSpecial(false)}><X className="w-4 h-4 mr-2"/>Close</Button></DialogFooter>
         </DialogContent>
       </Dialog>
     </div>
