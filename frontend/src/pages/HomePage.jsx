@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { BRAND, IMAGES, CATEGORIES, MENU, GROWTH, REVIEWS, TODAY_SPECIAL, MUSIC } from "../mock/mock";
+import { BRAND, IMAGES, CATEGORIES, MENU, GROWTH, REVIEWS, TODAY_SPECIAL, MUSIC, ASSETS } from "../mock/mock";
 import { Button } from "../components/ui/button";
 import { Card, CardHeader, CardContent, CardTitle } from "../components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../components/ui/carousel";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "../components/ui/dialog";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Switch } from "../components/ui/switch";
@@ -60,9 +60,9 @@ const Header = ({ onOrderClick }) => {
   );
 };
 
-const Hero = () => {
+const Hero = ({ parallaxY }) => {
   return (
-    <section id="home" className="relative overflow-hidden">
+    <section id="home" className="relative overflow-hidden reveal">
       <div className="absolute inset-0 -z-10 bg-[--wood] bg-cover bg-center opacity-10"></div>
       <div className="max-w-7xl mx-auto px-4 py-20 grid md:grid-cols-2 gap-10 items-center">
         <div>
@@ -81,7 +81,7 @@ const Hero = () => {
             <Badge className="bg-cream text-olive border border-olive/20">Handmade Dough</Badge>
           </div>
         </div>
-        <div className="relative">
+        <div className="relative" style={{ transform: `translateY(${parallaxY}px)`, transition: 'transform .08s linear' }}>
           <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/40 bg-white/60 backdrop-blur-2xl">
             <img src={IMAGES.heroFire} alt="Wood-fired pizza oven" className="w-full h-[420px] object-cover" />
           </div>
@@ -94,7 +94,7 @@ const Hero = () => {
 };
 
 const About = () => (
-  <section id="about" className="py-20 bg-cream/60">
+  <section id="about" className="py-20 bg-cream/60 reveal">
     <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
       <div className="rounded-xl overflow-hidden shadow-xl border bg-white/70 backdrop-blur-xl">
         <img src={IMAGES.heroChef} alt="Chef Rony" className="w-full h-[360px] object-cover" />
@@ -133,7 +133,7 @@ const MenuGrid = () => {
   const [active, setActive] = useState(CATEGORIES[0].key);
   const items = MENU[active] || [];
   return (
-    <section id="menu" className="py-20">
+    <section id="menu" className="py-20 reveal">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between flex-wrap gap-4">
           <h2 className="text-3xl font-bold" style={{fontFamily:"Poppins, sans-serif"}}>Menu / Foods I Serve</h2>
@@ -179,7 +179,7 @@ const Growth = () => {
   }).join(" ");
 
   return (
-    <section id="growth" className="py-20 bg-cream/60">
+    <section id="growth" className="py-20 bg-cream/60 reveal">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-3xl font-bold" style={{fontFamily:"Poppins, sans-serif"}}>My Growth & Sales (2019–2025)</h2>
         <div className="grid lg:grid-cols-3 gap-8 mt-8 items-stretch">
@@ -226,7 +226,7 @@ const Growth = () => {
 
 const Reviews = () => {
   return (
-    <section id="reviews" className="py-20">
+    <section id="reviews" className="py-20 reveal">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between">
           <h2 className="text-3xl font-bold" style={{fontFamily:"Poppins, sans-serif"}}>What Customers Say</h2>
@@ -271,7 +271,7 @@ const Contact = () => {
     setForm({ name: "", email: "", message: "" });
   };
   return (
-    <section id="contact" className="py-20 bg-cream/60">
+    <section id="contact" className="py-20 bg-cream/60 reveal">
       <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-10">
         <div>
           <h2 className="text-3xl font-bold" style={{fontFamily:"Poppins, sans-serif"}}>Get In Touch</h2>
@@ -296,7 +296,9 @@ const Contact = () => {
               <Textarea placeholder="Message" value={form.message} onChange={e=>setForm({...form, message: e.target.value})} rows={5} required />
               <div className="flex gap-3">
                 <Button type="submit" className="bg-olive hover:bg-olive/90 text-white">Send</Button>
-                <Button type="button" variant="outline" onClick={()=> toast.info("Download menu coming soon (mock)")}><Download className="w-4 h-4 mr-2"/>Download Menu</Button>
+                <a href={ASSETS.MENU_PDF_URL} target="_blank" rel="noreferrer" download="Ronys-Menu.pdf">
+                  <Button type="button" variant="outline"><Download className="w-4 h-4 mr-2"/>Download Menu</Button>
+                </a>
               </div>
             </form>
           </CardContent>
@@ -322,7 +324,38 @@ const Footer = () => (
 export default function HomePage() {
   const [openSpecial, setOpenSpecial] = useState(false);
   const [musicOn, setMusicOn] = useState(false);
+  const [parallaxY, setParallaxY] = useState(0);
   const audioRef = useRef(null);
+
+  // SEO basics
+  useEffect(() => {
+    document.title = "Rony’s Pizza Hub — Crafting Happiness, One Slice at a Time!";
+    const meta = document.querySelector("meta[name='description']");
+    if (meta) meta.setAttribute("content", "Wood-fired pizzas in Mumbai since 2015. Handcrafted dough, premium ingredients, cozy vibes.");
+  }, []);
+
+  // custom cursor
+  useEffect(() => {
+    document.body.classList.add("pizza-cursor");
+    return () => document.body.classList.remove("pizza-cursor");
+  }, []);
+
+  // reveal on scroll + parallax
+  useEffect(() => {
+    const els = Array.from(document.querySelectorAll('.reveal'));
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
+    }, { threshold: 0.12 });
+    els.forEach(el=> io.observe(el));
+
+    const onScroll = () => {
+      const y = window.scrollY;
+      setParallaxY(Math.max(-10, Math.min(30, y * 0.06)));
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => { io.disconnect(); window.removeEventListener('scroll', onScroll); };
+  }, []);
 
   // Show today's special once
   useEffect(() => {
@@ -353,8 +386,8 @@ export default function HomePage() {
         <audio ref={audioRef} src={MUSIC.url} loop />
       )}
       <Header onOrderClick={onOrderClick} />
-      <Hero />
-      <section className="py-8">
+      <Hero parallaxY={parallaxY} />
+      <section className="py-8 reveal">
         <div className="max-w-7xl mx-auto px-4">
           <Card className="bg-gradient-to-r from-cream to-cream/70 border-olive/20">
             <CardContent className="py-8 flex flex-col md:flex-row items-center justify-between gap-6">

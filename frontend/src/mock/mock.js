@@ -112,3 +112,7 @@ export const MUSIC = {
   // Royalty-free soft Italian instrumental sample (public demo link). Can be replaced later.
   url: "https://cdn.pixabay.com/download/audio/2021/08/08/audio_6c8435c3a7.mp3?filename=memories-113172.mp3",
 };
+
+export const ASSETS = {
+  MENU_PDF_URL: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+};
