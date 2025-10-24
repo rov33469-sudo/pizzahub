@@ -116,6 +116,20 @@
       - working: true
         agent: "main"
         comment: "Contracts drafted with routes and schemas; ready for implementation."
+  - task: "Implement FastAPI backend with all content endpoints"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 1
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "testing"
+        comment: "Initial testing failed with 502 errors due to relative import issues in server.py"
+      - working: true
+        agent: "testing"
+        comment: "Fixed relative imports to absolute imports. All 10 backend endpoints now working: Health (GET /api/), Menu (10 items, 5 categories), Chef's Choice (3 items), Special (with name/price/img), Reviews (6 items with customer/blogger types), Timeline (5 items in ascending years), Video (YouTube URL), Assets (menu_pdf_url), Contact Messages (POST returns id/ts), Bookings (POST returns status=received). Backend fully functional."
 
 ## frontend:
   - task: "Landing with hero, about, menu, growth chart, reviews, contact, special modal, music toggle"
