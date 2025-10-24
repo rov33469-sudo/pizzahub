@@ -101,3 +101,63 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+## user_problem_statement: Build Rony’s Pizza Hub portfolio with rich sections and integrate backend.
+
+## backend:
+  - task: "Design API contracts for menu, reviews, timeline, video, specials, contact, bookings"
+    implemented: true
+    working: true
+    file: "/app/contracts.md"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Contracts drafted with routes and schemas; ready for implementation."
+
+## frontend:
+  - task: "Landing with hero, about, menu, growth chart, reviews, contact, special modal, music toggle"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/HomePage.jsx"
+    stuck_count: 1
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "testing"
+        comment: "Initial test failed due to Dialog footer typo creating blank page."
+      - working: true
+        agent: "main"
+        comment: "Fixed typo; verified with screenshots."
+  - task: "Add Journey timeline, Chef’s Choice carousel, video section, scroll indicator, blogger reviews"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/HomePage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Sections added and verified via screenshots."
+
+## metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: true
+
+## test_plan:
+  current_focus:
+    - "Implement backend models and CRUD for contracts"
+    - "Replace mocks with live fetches"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+## agent_communication:
+  - agent: "main"
+    message: "Contracts ready. Awaiting user confirmation to start backend implementation and then run backend testing agent."
